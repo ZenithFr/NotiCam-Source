@@ -1,0 +1,346 @@
+Warning: Looks like you're using an outdated `kaggle` version (installed: 2.2.4), please consider upgrading to the latest version (2.2.5)
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+Thu Oct 29 16:44:27 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Tesla T4                       Off |   00000000:00:04.0 Off |                    0 |
+| N/A   48C    P8             10W /   70W |       0MiB /  15360MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  Tesla T4                       Off |   00000000:00:05.0 Off |                    0 |
+| N/A   37C    P8              9W /   70W |       0MiB /  15360MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+=======================================================
+=== AuxCam Portrait Net â Kaggle GPU Engine Init ===
+=======================================================
+TensorFlow Version: 2.20.0
+GPUs Detected: 2
+  GPU #0: /physical_device:GPU:0
+  GPU #1: /physical_device:GPU:1
+Active Mixed Precision Policy: <DTypePolicy "mixed_float16">
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793292293.982329      22 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 13756 MB memory:  -> device: 0, name: Tesla T4, pci bus id: 0000:00:04.0, compute capability: 7.5
+/tmp/ipykernel_22/2469262987.py:48: UserWarning: `input_shape` is undefined or non-square, or `rows` is not in [96, 128, 160, 192, 224]. Weights for input shape (224, 224) will be loaded as the default.
+  base = tf.keras.applications.MobileNetV2(input_tensor=norm, include_top=False, weights='imagenet')
+
+/tmp/ipykernel_22/2469262987.py:48: UserWarning: `input_shape` is undefined or non-square, or `rows` is not in [96, 128, 160, 192, 224]. Weights for input shape (224, 224) will be loaded as the default.
+  base = tf.keras.applications.MobileNetV2(input_tensor=norm, include_top=False, weights='imagenet')
+I0000 00:00:1793292293.986257      22 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 13756 MB memory:  -> device: 1, name: Tesla T4, pci bus id: 0000:00:05.0, compute capability: 7.5
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793292293.982329      22 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 13756 MB memory:  -> device: 0, name: Tesla T4, pci bus id: 0000:00:04.0, compute capability: 7.5
+I0000 00:00:1793292293.986257      22 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 13756 MB memory:  -> device: 1, name: Tesla T4, pci bus id: 0000:00:05.0, compute capability: 7.5
+
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793292293.982329      22 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 13756 MB memory:  -> device: 0, name: Tesla T4, pci bus id: 0000:00:04.0, compute capability: 7.5
+I0000 00:00:1793292293.986257      22 gpu_device.cc:2020] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 13756 MB memory:  -> device: 1, name: Tesla T4, pci bus id: 0000:00:05.0, compute capability: 7.5
+Downloading data from https://storage.googleapis.com/tensorflow/keras-applications/mobilenet_v2/mobilenet_v2_weights_tf_dim_ordering_tf_kernels_1.0_224_no_top.h5
+[1m      0/9406464[0m [37mââââââââââââââââââââ[0m [1m0s[0m 0s/step[1m7905280/9406464[0m [32mââââââââââââââââ[0m[37mââââ[0m [1m0s[0m 0us/step[1m9406464/9406464[0m [32mââââââââââââââââââââ[0m[37m[0m [1m0s[0m 0us/step
+Total Model Parameters: 944,082
+=======================================================
+=== Loss Sanity Audit (Item 19) â Synthetic 25% Foreground Mask ===
+=======================================================
+  L1 Loss:        pred=GT: 0.000000 | pred=0: 0.600000 | pred=mean: 0.533333
+  Sobel Loss:     pred=GT: 0.000000 | pred=0: 0.020833 | pred=mean: 0.020833
+  Laplacian Loss: pred=GT: 0.000000 | pred=0: 0.009033 | pred=mean: 0.009033
+  Total Loss:     pred=GT: 0.000000 | pred=0: 0.614933 | pred=mean: 0.548267
+{"stream_name":"stdout","time":43.228517339,"data":"â
+{"stream_name":"stdout","time":44.672782173,"data":"â
+=== Ingesting the 4 Datasets (P3M-10k, AIM-500, HHM, PMD) ===
+Ingesting P3M-10k from https://huggingface.co/api/datasets/nobg/P3M-10K/parquet/default/train/0.parquet...
+Ingesting AIM-500 from https://huggingface.co/api/datasets/nobg/AIM-500/parquet/default/test/0.parquet...
+Ingesting HHM from https://huggingface.co/api/datasets/nobg/HIM-2K/parquet/default/comp/0.parquet...
+Ingesting HHM from https://huggingface.co/api/datasets/nobg/HIM-2K/parquet/default/comp/1.parquet...
+Ingesting HHM from https://huggingface.co/api/datasets/nobg/HIM-2K/parquet/default/comp/2.parquet...
+Ingesting HHM from https://huggingface.co/api/datasets/nobg/HIM-2K/parquet/default/comp/3.parquet...
+Ingesting HHM from https://huggingface.co/api/datasets/nobg/HIM-2K/parquet/default/comp/4.parquet...
+Ingesting HHM from https://huggingface.co/api/datasets/nobg/HIM-2K/parquet/default/natural/0.parquet...
+Ingesting PMD from https://huggingface.co/api/datasets/nobg/RMAS/parquet/default/train/0.parquet...
+Ingesting PMD from https://huggingface.co/api/datasets/nobg/RMAS/parquet/default/train/1.parquet...
+Ingesting PMD from https://huggingface.co/api/datasets/nobg/figaro1k/parquet/default/train/0.parquet...
+=== CONTENT HASH AUDIT & DEDUPLICATION ===
+  P3M-10k   : Raw=12,778 -> Unique=12,778 (Deduplicated=0)
+  AIM-500   : Raw=500 -> Unique=500 (Deduplicated=0)
+  HHM       : Raw=2,000 -> Unique=2,000 (Deduplicated=0)
+  PMD       : Raw=3,354 -> Unique=3,349 (Deduplicated=5)
+---------------------------------------------------
+=== CORPUS DYNAMIC VALIDATION (Item 21) ===
+  P3M-10k   : Raw=12,778 -> Unique=10,421 -> Train=9,343 + Val=1,078 = Final=10,421
+  AIM-500   : Raw=500 -> Unique=500 -> Train=458 + Val=42 = Final=500
+  HHM       : Raw=2,000 -> Unique=2,000 -> Train=1,792 + Val=208 = Final=2,000
+  PMD       : Raw=3,354 -> Unique=2,514 -> Train=2,277 + Val=237 = Final=2,514
+Total Corpus: Raw=18,632 | Unique=15,435 | Final=15,435 (13,870 Train, 1,565 Val)
+---------------------------------------------------
+Finished writing 5 shards (189.3 MB) to /kaggle/working/data/tfrecords/train_p3m_10k
+Finished writing 1 shards (32.3 MB) to /kaggle/working/data/tfrecords/train_aim_500
+Finished writing 1 shards (144.1 MB) to /kaggle/working/data/tfrecords/train_hhm
+Finished writing 2 shards (147.8 MB) to /kaggle/working/data/tfrecords/train_pmd
+Finished writing 2 shards (21.6 MB) to /kaggle/working/data/tfrecords/val_p3m_10k
+Finished writing 1 shards (3.1 MB) to /kaggle/working/data/tfrecords/val_aim_500
+Finished writing 1 shards (16.6 MB) to /kaggle/working/data/tfrecords/val_hhm
+Finished writing 1 shards (15.2 MB) to /kaggle/working/data/tfrecords/val_pmd
+Finished writing 1 shards (56.5 MB) to /kaggle/working/data/tfrecords/val_all
+{"stream_name":"stdout","time":1398.492024542,"data":"â
+=======================================================
+=== Frozen-Encoder Domain Separability Probe (Item 18) ===
+=======================================================
+/tmp/ipykernel_22/2287930493.py:14: UserWarning: `input_shape` is undefined or non-square, or `rows` is not in [96, 128, 160, 192, 224]. Weights for input shape (224, 224) will be loaded as the default.
+  probe_base = tf.keras.applications.MobileNetV2(
+
+/tmp/ipykernel_22/2287930493.py:14: UserWarning: `input_shape` is undefined or non-square, or `rows` is not in [96, 128, 160, 192, 224]. Weights for input shape (224, 224) will be loaded as the default.
+  probe_base = tf.keras.applications.MobileNetV2(
+Extracting frozen encoder features across validation domains...
+Probe Feature Matrix: (192, 1280), Labels: (192,)
+Domain Classification 5-Fold Accuracy: 95.83% (Decision Threshold: 95.00%)
+â ï¸ Domain Separability > 95%! Domain cue detected across datasets.
+Retrain config: Strong ISP-domain augmentation is ACTIVATED and MANDATORY:
+  - JPEG quality [60, 95]
+  - Tone-curve / Gamma jitter [0.80, 1.25]
+  - Contrast jitter [0.80, 1.25]
+  - Gaussian sensor noise sigma in [0.010, 0.035]
+  - Random scale [0.5, 1.05]
+=======================================================
+=== Starting Stage 1 Training (Encoder Stages 0-4 Frozen) ===
+=======================================================
+/tmp/ipykernel_22/2469262987.py:48: UserWarning: `input_shape` is undefined or non-square, or `rows` is not in [96, 128, 160, 192, 224]. Weights for input shape (224, 224) will be loaded as the default.
+  base = tf.keras.applications.MobileNetV2(input_tensor=norm, include_top=False, weights='imagenet')
+
+/tmp/ipykernel_22/2469262987.py:48: UserWarning: `input_shape` is undefined or non-square, or `rows` is not in [96, 128, 160, 192, 224]. Weights for input shape (224, 224) will be loaded as the default.
+  base = tf.keras.applications.MobileNetV2(input_tensor=norm, include_top=False, weights='imagenet')
+--- STAGE 1 LAYER-BY-LAYER FREEZE AUDIT ---
+Layer 00: image_input                  | Type: InputLayer           | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 01: norm_m1_p1                   | Type: Rescaling            | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 02: Conv1                        | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:    864
+Layer 03: bn_Conv1                     | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    128
+Layer 04: Conv1_relu                   | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 05: expanded_conv_depthwise      | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:    288
+Layer 06: expanded_conv_depthwise_BN   | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    128
+Layer 07: expanded_conv_depthwise_relu | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 08: expanded_conv_project        | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:    512
+Layer 09: expanded_conv_project_BN     | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:     64
+Layer 10: block_1_expand               | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:  1,536
+Layer 11: block_1_expand_BN            | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    384
+Layer 12: block_1_expand_relu          | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 13: block_1_pad                  | Type: ZeroPadding2D        | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 14: block_1_depthwise            | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:    864
+Layer 15: block_1_depthwise_BN         | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    384
+Layer 16: block_1_depthwise_relu       | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 17: block_1_project              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:  2,304
+Layer 18: block_1_project_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:     96
+Layer 19: block_2_expand               | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:  3,456
+Layer 20: block_2_expand_BN            | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    576
+Layer 21: block_2_expand_relu          | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 22: block_2_depthwise            | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:  1,296
+Layer 23: block_2_depthwise_BN         | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    576
+Layer 24: block_2_depthwise_relu       | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 25: block_2_project              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:  3,456
+Layer 26: block_2_project_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:     96
+Layer 27: block_2_add                  | Type: Add                  | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 28: block_3_expand               | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:  3,456
+Layer 29: block_3_expand_BN            | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    576
+Layer 30: block_3_expand_relu          | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 31: block_3_pad                  | Type: ZeroPadding2D        | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 32: block_3_depthwise            | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:  1,296
+Layer 33: block_3_depthwise_BN         | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    576
+Layer 34: block_3_depthwise_relu       | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 35: block_3_project              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:  4,608
+Layer 36: block_3_project_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    128
+Layer 37: block_4_expand               | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:  6,144
+Layer 38: block_4_expand_BN            | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    768
+Layer 39: block_4_expand_relu          | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 40: block_4_depthwise            | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:  1,728
+Layer 41: block_4_depthwise_BN         | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    768
+Layer 42: block_4_depthwise_relu       | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 43: block_4_project              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:  6,144
+Layer 44: block_4_project_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    128
+Layer 45: block_4_add                  | Type: Add                  | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 46: block_5_expand               | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:  6,144
+Layer 47: block_5_expand_BN            | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    768
+Layer 48: block_5_expand_relu          | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 49: block_5_depthwise            | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:  1,728
+Layer 50: block_5_depthwise_BN         | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    768
+Layer 51: block_5_depthwise_relu       | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 52: block_5_project              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:  6,144
+Layer 53: block_5_project_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    128
+Layer 54: block_5_add                  | Type: Add                  | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 55: block_6_expand               | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr:  6,144
+Layer 56: block_6_expand_BN            | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    768
+Layer 57: block_6_expand_relu          | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 58: block_6_pad                  | Type: ZeroPadding2D        | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 59: block_6_depthwise            | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:  1,728
+Layer 60: block_6_depthwise_BN         | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    768
+Layer 61: block_6_depthwise_relu       | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 62: block_6_project              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 12,288
+Layer 63: block_6_project_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    256
+Layer 64: block_7_expand               | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 24,576
+Layer 65: block_7_expand_BN            | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  1,536
+Layer 66: block_7_expand_relu          | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 67: block_7_depthwise            | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:  3,456
+Layer 68: block_7_depthwise_BN         | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  1,536
+Layer 69: block_7_depthwise_relu       | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 70: block_7_project              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 24,576
+Layer 71: block_7_project_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    256
+Layer 72: block_7_add                  | Type: Add                  | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 73: block_8_expand               | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 24,576
+Layer 74: block_8_expand_BN            | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  1,536
+Layer 75: block_8_expand_relu          | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 76: block_8_depthwise            | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:  3,456
+Layer 77: block_8_depthwise_BN         | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  1,536
+Layer 78: block_8_depthwise_relu       | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 79: block_8_project              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 24,576
+Layer 80: block_8_project_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    256
+Layer 81: block_8_add                  | Type: Add                  | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 82: block_9_expand               | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 24,576
+Layer 83: block_9_expand_BN            | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  1,536
+Layer 84: block_9_expand_relu          | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 85: block_9_depthwise            | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:  3,456
+Layer 86: block_9_depthwise_BN         | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  1,536
+Layer 87: block_9_depthwise_relu       | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 88: block_9_project              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 24,576
+Layer 89: block_9_project_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    256
+Layer 90: block_9_add                  | Type: Add                  | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 91: block_10_expand              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 24,576
+Layer 92: block_10_expand_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  1,536
+Layer 93: block_10_expand_relu         | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 94: block_10_depthwise           | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:  3,456
+Layer 95: block_10_depthwise_BN        | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  1,536
+Layer 96: block_10_depthwise_relu      | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 97: block_10_project             | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 36,864
+Layer 98: block_10_project_BN          | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    384
+Layer 99: block_11_expand              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 55,296
+Layer 100: block_11_expand_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  2,304
+Layer 101: block_11_expand_relu         | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 102: block_11_depthwise           | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:  5,184
+Layer 103: block_11_depthwise_BN        | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  2,304
+Layer 104: block_11_depthwise_relu      | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 105: block_11_project             | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 55,296
+Layer 106: block_11_project_BN          | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    384
+Layer 107: block_11_add                 | Type: Add                  | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 108: block_12_expand              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 55,296
+Layer 109: block_12_expand_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  2,304
+Layer 110: block_12_expand_relu         | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 111: block_12_depthwise           | Type: DepthwiseConv2D      | Trainable: False | TrParams:      0 | NonTr:  5,184
+Layer 112: block_12_depthwise_BN        | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  2,304
+Layer 113: block_12_depthwise_relu      | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 114: block_12_project             | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 55,296
+Layer 115: block_12_project_BN          | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:    384
+Layer 116: block_12_add                 | Type: Add                  | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 117: block_13_expand              | Type: Conv2D               | Trainable: False | TrParams:      0 | NonTr: 55,296
+Layer 118: block_13_expand_BN           | Type: BatchNormalization   | Trainable: False | TrParams:      0 | NonTr:  2,304
+Layer 119: block_13_expand_relu         | Type: ReLU                 | Trainable: False | TrParams:      0 | NonTr:      0
+Layer 120: aspp_b1_dw                   | Type: DepthwiseConv2D      | Trainable: True  | TrParams:  5,184 | NonTr:      0
+Layer 121: aspp_b2_dw                   | Type: DepthwiseConv2D      | Trainable: True  | TrParams:  5,184 | NonTr:      0
+Layer 122: aspp_b1_bn1                  | Type: BatchNormalization   | Trainable: True  | TrParams:  1,152 | NonTr:  1,152
+Layer 123: aspp_b2_bn1                  | Type: BatchNormalization   | Trainable: True  | TrParams:  1,152 | NonTr:  1,152
+Layer 124: aspp_pool                    | Type: GlobalAveragePooling2D | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 125: aspp_b1_relu1                | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 126: aspp_b2_relu1                | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 127: aspp_pool_conv               | Type: Conv2D               | Trainable: True  | TrParams: 55,296 | NonTr:      0
+Layer 128: aspp_b0                      | Type: Conv2D               | Trainable: True  | TrParams: 55,296 | NonTr:      0
+Layer 129: aspp_b1_pw                   | Type: Conv2D               | Trainable: True  | TrParams: 55,296 | NonTr:      0
+Layer 130: aspp_b2_pw                   | Type: Conv2D               | Trainable: True  | TrParams: 55,296 | NonTr:      0
+Layer 131: aspp_pool_bn                 | Type: BatchNormalization   | Trainable: True  | TrParams:    192 | NonTr:    192
+Layer 132: aspp_b0_bn                   | Type: BatchNormalization   | Trainable: True  | TrParams:    192 | NonTr:    192
+Layer 133: aspp_b1_bn2                  | Type: BatchNormalization   | Trainable: True  | TrParams:    192 | NonTr:    192
+Layer 134: aspp_b2_bn2                  | Type: BatchNormalization   | Trainable: True  | TrParams:    192 | NonTr:    192
+Layer 135: aspp_pool_relu               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 136: aspp_b0_relu                 | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 137: aspp_b1_relu2                | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 138: aspp_b2_relu2                | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 139: aspp_pool_up                 | Type: UpSampling2D         | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 140: aspp_cat                     | Type: Concatenate          | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 141: aspp_proj                    | Type: Conv2D               | Trainable: True  | TrParams: 36,864 | NonTr:      0
+Layer 142: aspp_proj_bn                 | Type: BatchNormalization   | Trainable: True  | TrParams:    192 | NonTr:    192
+Layer 143: aspp_proj_relu               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 144: deep_up1                     | Type: UpSampling2D         | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 145: deep_dw1_dw                  | Type: DepthwiseConv2D      | Trainable: True  | TrParams:    864 | NonTr:      0
+Layer 146: deep_dw1_bn1                 | Type: BatchNormalization   | Trainable: True  | TrParams:    192 | NonTr:    192
+Layer 147: deep_dw1_relu1               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 148: deep_dw1_pw                  | Type: Conv2D               | Trainable: True  | TrParams:  9,216 | NonTr:      0
+Layer 149: deep_dw1_bn2                 | Type: BatchNormalization   | Trainable: True  | TrParams:    192 | NonTr:    192
+Layer 150: deep_dw1_relu2               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 151: deep_up2                     | Type: UpSampling2D         | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 152: deep_dw2_dw                  | Type: DepthwiseConv2D      | Trainable: True  | TrParams:    864 | NonTr:      0
+Layer 153: deep_dw2_bn1                 | Type: BatchNormalization   | Trainable: True  | TrParams:    192 | NonTr:    192
+Layer 154: deep_dw2_relu1               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 155: deep_dw2_pw                  | Type: Conv2D               | Trainable: True  | TrParams:  9,216 | NonTr:      0
+Layer 156: deep_dw2_bn2                 | Type: BatchNormalization   | Trainable: True  | TrParams:    192 | NonTr:    192
+Layer 157: deep_dw2_relu2               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 158: deep_up3                     | Type: UpSampling2D         | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 159: deep_dw3_dw                  | Type: DepthwiseConv2D      | Trainable: True  | TrParams:    864 | NonTr:      0
+Layer 160: deep_dw3_bn1                 | Type: BatchNormalization   | Trainable: True  | TrParams:    192 | NonTr:    192
+Layer 161: deep_dw3_relu1               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 162: deep_dw3_pw                  | Type: Conv2D               | Trainable: True  | TrParams:  9,216 | NonTr:      0
+Layer 163: low_proj                     | Type: Conv2D               | Trainable: True  | TrParams:  4,608 | NonTr:      0
+Layer 164: deep_dw3_bn2                 | Type: BatchNormalization   | Trainable: True  | TrParams:    192 | NonTr:    192
+Layer 165: low_proj_bn                  | Type: BatchNormalization   | Trainable: True  | TrParams:     96 | NonTr:     96
+Layer 166: deep_dw3_relu2               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 167: low_proj_relu                | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 168: fuse_cat                     | Type: Concatenate          | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 169: fuse_dw1_dw                  | Type: DepthwiseConv2D      | Trainable: True  | TrParams:  1,296 | NonTr:      0
+Layer 170: fuse_dw1_bn1                 | Type: BatchNormalization   | Trainable: True  | TrParams:    288 | NonTr:    288
+Layer 171: fuse_dw1_relu1               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 172: fuse_dw1_pw                  | Type: Conv2D               | Trainable: True  | TrParams:  9,216 | NonTr:      0
+Layer 173: fuse_dw1_bn2                 | Type: BatchNormalization   | Trainable: True  | TrParams:    128 | NonTr:    128
+Layer 174: fuse_dw1_relu2               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 175: fuse_dw2_dw                  | Type: DepthwiseConv2D      | Trainable: True  | TrParams:    576 | NonTr:      0
+Layer 176: fuse_dw2_bn1                 | Type: BatchNormalization   | Trainable: True  | TrParams:    128 | NonTr:    128
+Layer 177: fuse_dw2_relu1               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 178: fuse_dw2_pw                  | Type: Conv2D               | Trainable: True  | TrParams:  3,072 | NonTr:      0
+Layer 179: fuse_dw2_bn2                 | Type: BatchNormalization   | Trainable: True  | TrParams:     96 | NonTr:     96
+Layer 180: fuse_dw2_relu2               | Type: ReLU                 | Trainable: True  | TrParams:      0 | NonTr:      0
+Layer 181: coeffs                       | Type: Conv2D               | Trainable: True  | TrParams:     98 | NonTr:      0
+-------------------------------------------
+Stage 1 Trainable Params: 322,674 / Total Params: 944,082
+Non-Trainable BN Parameters Confirmed: 22,432 (16 BN layers x 2 stats/channel)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import sys;import papermill as pm;pm.execute_notebook("__notebook__.ipynb","__notebook__.ipynb",progress_bar=False,log_output=True,stdout_file=sys.stdout,stderr_file=sys.stderr,allow_errors=False,timeout=43200)
+                                      ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/papermill/execute.py", line 131, in execute_notebook
+    raise_for_execution_errors(nb, output_path)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/papermill/execute.py", line 251, in raise_for_execution_errors
+    raise error
+papermill.exceptions.PapermillExecutionError: 
+---------------------------------------------------------------------------
+Exception encountered at "In [7]":
+---------------------------------------------------------------------------
+AssertionError                            Traceback (most recent call last)
+/tmp/ipykernel_22/1888770032.py in <cell line: 0>()
+     30 print(f"Stage 1 Trainable Params: {trainable_p:,} / Total Params: {total_p:,}")
+     31 print(f"Non-Trainable BN Parameters Confirmed: {bn_non_trainable_params:,} (16 BN layers x 2 stats/channel)")
+---> 32 assert trainable_p == 137_282, f"Unexpected trainable parameter count: {trainable_p}"
+     33 assert bn_non_trainable_params == 3_696, f"Expected 3,696 non-trainable BN params, got {bn_non_trainable_params}"
+     34 
+
+AssertionError: Unexpected trainable parameter count: 322674
+
+/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+  cells[i][c] = re.sub('\\\\\|', '|', cell)
+/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+  text = re.sub(r'_', '\_', text) # Escape underscores in display text
+[NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+[NbConvertApp] Writing 109771 bytes to __notebook__.ipynb
+[NbConvertApp] Converting notebook __notebook__.ipynb to html
+[NbConvertApp] Writing 614899 bytes to __results__.html

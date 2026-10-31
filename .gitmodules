@@ -1,0 +1,4 @@
+[submodule "noticam-app"]
+	path = noticam-app
+	url = https://github.com/ZenithFr/NotiCam.git
+	branch = main

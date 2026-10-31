@@ -1,0 +1,18 @@
+{
+  "id": "zenithfr/auxcam-portrait-net-training",
+  "title": "auxcam-portrait-net-training",
+  "code_file": "auxcam_portrait_net_training.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "dataset_sources": [
+    "rahulbhalley/p3m-10k"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": []
+}

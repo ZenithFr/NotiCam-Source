@@ -1,0 +1,30 @@
+# Python virtual environments & bytecode
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Build outputs & caches
+.gradle/
+build/
+local.properties
+.cxx/
+ndk-out/
+*.o
+*.o.d
+*.spv
+
+# IDE & Editor files
+.idea/
+*.iml
+.vscode/
+
+# OS / Temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*~
