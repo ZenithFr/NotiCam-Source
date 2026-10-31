@@ -15,7 +15,7 @@ Incorporates all M2 & W6 corrections in strict revised priority order:
 import json
 import os
 
-KAGGLE_DIR = "/home/zenith/Work/auxcam/kaggle"
+KAGGLE_DIR = os.path.dirname(os.path.abspath(__file__))
 os.makedirs(KAGGLE_DIR, exist_ok=True)
 NOTEBOOK_PATH = os.path.join(KAGGLE_DIR, "auxcam_portrait_net_training.ipynb")
 METADATA_PATH = os.path.join(KAGGLE_DIR, "kernel-metadata.json")
