@@ -30,7 +30,7 @@ def run_qat_training(
         model.load_weights(stage2_weights)
         print(f"Loaded Stage 2 weights from {stage2_weights}")
     else:
-        print(f"Notice: Stage 2 weights not found at {stage2_weights}, continuing with base weights.")
+        raise FileNotFoundError(f"Stage 2 checkpoint missing: {stage2_weights}")
 
     for layer in model.layers:
         layer.trainable = True
@@ -39,26 +39,16 @@ def run_qat_training(
     loss_fn = PortraitMattingLoss()
     augmenter = PortraitAugmenter()
 
-    train_files = tf.io.gfile.glob(train_pattern)
-    if not train_files:
-        print("Notice: No TFRecords found. Generating synthetic dataset for verification...")
-        def synth_gen():
-            for _ in range(64):
-                img = tf.random.uniform([384, 512, 3], 0.0, 1.0)
-                alpha = tf.cast(img[..., 0:1] > 0.5, tf.float32)
-                yield img, alpha
-        train_ds = tf.data.Dataset.from_generator(synth_gen, output_signature=(
-            tf.TensorSpec(shape=(384, 512, 3), dtype=tf.float32),
-            tf.TensorSpec(shape=(384, 512, 1), dtype=tf.float32)
-        )).batch(batch_size).prefetch(tf.data.AUTOTUNE)
-        val_ds = train_ds
-    else:
-        train_ds = load_tfrecord_dataset(train_pattern, batch_size=batch_size, is_training=True)
-        train_ds = train_ds.map(augmenter.augment_train, num_parallel_calls=tf.data.AUTOTUNE)
-        train_ds = train_ds.batch(batch_size).prefetch(tf.data.AUTOTUNE)
-
-        val_ds = load_tfrecord_dataset(val_pattern, batch_size=batch_size, is_training=False)
-        val_ds = val_ds.batch(batch_size).prefetch(tf.data.AUTOTUNE)
+    # Never silently train/export on random data when a mount is missing.
+    if not tf.io.gfile.glob(train_pattern):
+        raise FileNotFoundError(f"No training TFRecords matched {train_pattern!r}")
+    if not tf.io.gfile.glob(val_pattern):
+        raise FileNotFoundError(f"No validation TFRecords matched {val_pattern!r}")
+    train_ds = load_tfrecord_dataset(train_pattern, batch_size=batch_size, is_training=True)
+    train_ds = train_ds.map(augmenter.augment_train, num_parallel_calls=tf.data.AUTOTUNE)
+    train_ds = train_ds.batch(batch_size).prefetch(tf.data.AUTOTUNE)
+    val_ds = load_tfrecord_dataset(val_pattern, batch_size=batch_size, is_training=False)
+    val_ds = val_ds.batch(batch_size).prefetch(tf.data.AUTOTUNE)
 
     @tf.function
     def train_step(x_rgb, y_alpha):
@@ -72,7 +62,7 @@ def run_qat_training(
         optimizer.apply_gradients(zip(grads, model.trainable_weights))
         return loss_val, alpha_pred
 
-    best_val_iou = 0.0
+    best_val_iou = -1.0
     for epoch in range(1, epochs + 1):
         t0 = time.time()
         train_loss_total = 0.0
@@ -83,7 +73,9 @@ def run_qat_training(
             train_loss_total += loss_v.numpy()
             train_steps += 1
 
-        avg_train_loss = train_loss_total / max(1, train_steps)
+        if not train_steps:
+            raise ValueError("Training TFRecords contain no examples")
+        avg_train_loss = train_loss_total / train_steps
 
         # Val
         val_loss_total = 0.0
@@ -102,9 +94,11 @@ def run_qat_training(
             val_sad_total += sad.numpy()
             val_steps += 1
 
-        avg_val_loss = val_loss_total / max(1, val_steps)
-        avg_val_iou = val_iou_total / max(1, val_steps)
-        avg_val_sad = val_sad_total / max(1, val_steps)
+        if not val_steps:
+            raise ValueError("Validation TFRecords contain no examples")
+        avg_val_loss = val_loss_total / val_steps
+        avg_val_iou = val_iou_total / val_steps
+        avg_val_sad = val_sad_total / val_steps
 
         dt = time.time() - t0
         print(f"QAT Epoch {epoch:02d}/{epochs:02d} ({dt:.1f}s) | Train: {avg_train_loss:.4f} | Val: {avg_val_loss:.4f} | IoU: {avg_val_iou:.4f} | SAD: {avg_val_sad:.2f}")
@@ -116,7 +110,7 @@ def run_qat_training(
 
     final_weights = os.path.join(output_dir, "best_qat.weights.h5")
     final_tflite = os.path.join(output_dir, "portrait_v1_int8.tflite")
-    export_int8_model(weights_path=final_weights, output_path=final_tflite)
+    export_int8_model(weights_path=final_weights, output_path=final_tflite, rep_pattern=train_pattern)
     print(f"=== QAT Complete! Exported -> {final_tflite} ===")
 
 if __name__ == "__main__":

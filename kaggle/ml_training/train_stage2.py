@@ -33,7 +33,7 @@ def run_stage2_training(
         model.load_weights(stage1_weights)
         print(f"Loaded Stage 1 weights from {stage1_weights}")
     else:
-        print(f"Notice: {stage1_weights} not found, initializing from scratch or intermediate checkpoint.")
+        raise FileNotFoundError(f"Stage 1 checkpoint missing: {stage1_weights}")
 
     # Fully unfreeze all layers
     for layer in model.layers:
@@ -53,29 +53,19 @@ def run_stage2_training(
 
     augmenter = PortraitAugmenter()
     
-    train_files = tf.io.gfile.glob(train_pattern)
-    if not train_files:
-        print("Notice: No TFRecords found. Generating synthetic dataset for graph verification...")
-        def synth_gen():
-            for _ in range(64):
-                img = tf.random.uniform([384, 512, 3], 0.0, 1.0)
-                alpha = tf.cast(img[..., 0:1] > 0.5, tf.float32)
-                yield img, alpha
-        train_ds = tf.data.Dataset.from_generator(synth_gen, output_signature=(
-            tf.TensorSpec(shape=(384, 512, 3), dtype=tf.float32),
-            tf.TensorSpec(shape=(384, 512, 1), dtype=tf.float32)
-        )).batch(batch_size).prefetch(tf.data.AUTOTUNE)
-        val_ds = train_ds
-    else:
-        train_ds = load_tfrecord_dataset(train_pattern, batch_size=batch_size, is_training=True)
-        train_ds = train_ds.map(augmenter.augment_train, num_parallel_calls=tf.data.AUTOTUNE)
-        train_ds = train_ds.batch(batch_size).prefetch(tf.data.AUTOTUNE)
-
-        val_ds = load_tfrecord_dataset(val_pattern, batch_size=batch_size, is_training=False)
-        val_ds = val_ds.batch(batch_size).prefetch(tf.data.AUTOTUNE)
+    # Never silently train/export on random data when a mount is missing.
+    if not tf.io.gfile.glob(train_pattern):
+        raise FileNotFoundError(f"No training TFRecords matched {train_pattern!r}")
+    if not tf.io.gfile.glob(val_pattern):
+        raise FileNotFoundError(f"No validation TFRecords matched {val_pattern!r}")
+    train_ds = load_tfrecord_dataset(train_pattern, batch_size=batch_size, is_training=True)
+    train_ds = train_ds.map(augmenter.augment_train, num_parallel_calls=tf.data.AUTOTUNE)
+    train_ds = train_ds.batch(batch_size).prefetch(tf.data.AUTOTUNE)
+    val_ds = load_tfrecord_dataset(val_pattern, batch_size=batch_size, is_training=False)
+    val_ds = val_ds.batch(batch_size).prefetch(tf.data.AUTOTUNE)
 
     history = []
-    best_val_iou = 0.0
+    best_val_iou = -1.0
 
     @tf.function
     def train_step(x_rgb, y_alpha):
@@ -117,7 +107,9 @@ def run_stage2_training(
                 model.save_weights(ckpt_path)
                 print(f"  [Step {global_step}] Checkpoint saved -> {ckpt_path}")
 
-        avg_train_loss = train_loss_total / max(1, train_steps)
+        if not train_steps:
+            raise ValueError("Training TFRecords contain no examples")
+        avg_train_loss = train_loss_total / train_steps
 
         val_loss_total = 0.0
         val_iou_total = 0.0
@@ -132,9 +124,11 @@ def run_stage2_training(
             val_sad_total += sad.numpy()
             val_steps += 1
 
-        avg_val_loss = val_loss_total / max(1, val_steps)
-        avg_val_iou = val_iou_total / max(1, val_steps)
-        avg_val_sad = val_sad_total / max(1, val_steps)
+        if not val_steps:
+            raise ValueError("Validation TFRecords contain no examples")
+        avg_val_loss = val_loss_total / val_steps
+        avg_val_iou = val_iou_total / val_steps
+        avg_val_sad = val_sad_total / val_steps
 
         dt = time.time() - t0
         curr_lr = optimizer.inner_optimizer.learning_rate(global_step).numpy() if hasattr(optimizer, 'inner_optimizer') else 0.0
